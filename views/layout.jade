@@ -1,0 +1,54 @@
+doctype 5
+html
+  head
+
+    //**************************************************************************
+    //               _____   _____      _______                       _____
+    //    |\     |  |       |     |        |     |      |  |\     |  |     
+    //    | \    |  |       |     |        |     |      |  | \    |  |
+    //    |  \   |  |____   |_____|        |     |      |  |  \   |  |____
+    //    |   \  |  |       |        ---   |     |      |  |   \  |  |
+    //    |    \ |  |       |              |     |      |  |    \ |  |
+    //    |     \|  |_____  |              |      \____/   |     \|  |_____
+    // 
+    //     NODE  -  EMBER - PARSE  in perfect TUNE
+    //**************************************************************************
+    
+    title= title
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/neptune.css')
+
+  body
+    block content
+
+    // ember templates
+    include templates/navigation
+    include templates/home
+    include templates/emailMessaging
+    include templates/smsMessaging
+    include templates/myProfile
+
+    // library scripts
+    script(src='/javascripts/libs/jquery-1.7.2.min.js')
+    script(src='/javascripts/libs/bootstrap.js')
+    script(src='/javascripts/libs/handlebars-1.0.0.beta.6.js')
+    script(src='/javascripts/libs/ember-1.0.0-pre.2.js')
+    script(src='/javascripts/libs/parse-1.1.11.js')
+
+    // ember application
+    script(src='/javascripts/app.js')
+
+    // ember models
+    script(src='/javascripts/dataModels.js')
+
+    // ember data sources
+    script(src='/javascripts/dataSources.js')
+
+    // ember views
+    script(src='/javascripts/views.js')
+
+    // ember controllers
+    script(src='/javascripts/accountController.js')
+    script(src='/javascripts/emailMessagingController.js')
+    script(src='/javascripts/smsMessagingController.js')  
+

@@ -1,0 +1,47 @@
+script(type='text/x-handlebars', data-template-name='home')
+   div.container
+      div.row
+        div.span8.offset2
+          h3 Neptune
+          
+          p Welcome to the Neptune Project.  This project was put together to allow for a quick setup of an application using Node.js for the web server, Ember.js for the client-side MVC, and Parse for the API.
+
+          h4 Features
+
+          h5 Node.js
+
+          ul
+            li MVC architecure web server using express
+
+          h5 Ember.js
+
+          ul
+            li complete client side MVC architecture including
+              ul
+                li Application Controller with Routing
+                li dataModels file for all data used in Ember
+                li dataSources file used for all API requests, in this case, it is used to talk to Parse and convert objects into Ember objects
+                li data-binding for viewing and editing data
+
+          h5 Parse.com
+
+          ul
+            li  API and data store architecture
+              ul
+                li system wide error logging hosted in the dataSources file, including cloud code to show hw to verify severity is either ERROR, WARNING or INFO
+                li account login, logout, register and updating
+                li ability to send emails using Mailgun
+                li ability to send sms using Twilio
+                li zero-configuration, no data model needs to be created, just get the app up and running, and you wil have you backend architecture created as you use it
+
+          h5 Miscellaneous
+
+          ul
+            li Twitter Bootstrap for simple layout of the application
+            li Jade Templating - jade is being used to serve up the html from Node to your browser
+            li CoffeeScript - once you try it you will love it
+            li Cloud Code - Parse cloud code enables a very easy way to not only have before and after triggers on collections, but also a way to quickly add an api endpoint
+            li Handlebars.js - Ember uses this for all it's data-binding, it can get a little funky when combined with jade, but you get used to it
+            li LESS - stylesheets compiled via LESS, though I do love SASS, LESS if what bootstrap uses, so I went with it for this
+            li Twilio - twilio integration for SMS messaging
+            li MailGun - mailgun integration for email messaging

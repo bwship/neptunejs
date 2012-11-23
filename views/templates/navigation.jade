@@ -1,0 +1,125 @@
+script(type='text/x-handlebars', data-template-name='navigation')
+  nav.navbar
+    div.navbar-inner
+      div.container
+        ul.nav
+          li
+            <a {{action doHome }} href="#">Home</a>
+          li
+            <a {{action doMyProfile }} {{bindAttr class="view.hideLogout"}} href="#">My Profile</a>
+          li
+            <a {{action doSmsMessaging }} {{bindAttr class="view.hideLogout"}} href="#" class="loggedIn">SMSing</a>
+          li
+            <a {{action doEmailMessaging }} {{bindAttr class="view.hideLogout"}} href="#" class="loggedIn">Emailing</a>
+          li
+            <a {{action logout target="parentView"}} href="#" {{bindAttr class="view.hideLogout"}}>Sign Out</a>
+          li
+            <a {{action showRegister target="parentView"}} {{bindAttr class="view.hideLogin"}} href="#">Register</a>
+          li
+            <a {{action showSignIn target="parentView"}} {{bindAttr class="view.hideLogin"}} href="#">Sign In</a>
+  
+  div  
+    div#forgotPassword(class='modal fade', data-backdrop="static", aria-hidden="true")
+      div.modal-header        
+        <button class="close" {{action "cancelForgotPassword" target="parentView"}}>&times;</button>
+        h3 Forgot Password
+      div.modal-body       
+        form.form-horizontal
+          div.forgot-password-group.control-group
+            label.control-label
+            div.controls
+              span.help-inline {{view.forgotPassword.error}} 
+            label.control-label Email
+            div.controls
+              div.input-prepend
+                span.add-on
+                  i.icon-envelope                        
+              {{view Ember.TextField valueBinding="view.forgotPassword.email" placeholder="Enter your email address"}}
+          div.forgot-password-group.control-group
+            div.controls
+              div.row
+                div.span1                            
+                  <a href="#" {{action "showRegister" target="parentView"}}>Register</a>
+                div.span2
+                  <a href="#" {{action "showSignIn" target="parentView"}}>Sign In</a>                           
+      div.modal-footer
+        <button class="btn" {{action "cancelForgotPassword" target="parentView"}}>Cancel</button>
+        <button class="btn btn-primary" {{action "requestForgotPassword" target="parentView"}}>Send</button>
+        
+    div#signIn(class='modal fade', data-backdrop="static", aria-hidden="true")
+      div.modal-header        
+        <button class="close" {{action "cancelSignIn" target="parentView"}}>&times;</button>
+        h3 Sign In            
+      div.modal-body  
+        form.form-horizontal
+          div.signin-group.control-group
+            label.control-label
+            div.controls
+              span.help-inline {{view.login.error}} 
+            label.control-label Email
+            div.controls
+              div.input-prepend
+                span.add-on
+                  i.icon-envelope                        
+              {{view view.signInTextField valueBinding="view.login.username" placeholder="Enter your email address"}}
+          div.signin-group.control-group
+            label.control-label Password
+            div.controls
+              div.input-prepend
+                span.add-on
+                  i.icon-lock
+              {{view view.signInTextField valueBinding="view.login.password" type="password" placeholder="Enter your password"}}
+          div.control-group
+            div.controls
+              div.row
+                div.span1                            
+                  <a href="#" {{action "showRegister" target="parentView"}}>Register</a>
+                div.span2
+                  <a href="#" {{action "showForgotPassword" target="parentView"}}>Forgot password?</a>                            
+      div.modal-footer
+        <button class="btn" {{action "cancelSignIn" target="parentView"}}>Cancel</button>
+        <button class="btn btn-primary" {{action "signIn" target="parentView"}}>Sign In</button>
+          
+    div#register(class='modal fade', data-backdrop="static", aria-hidden="true")
+      div.modal-header        
+        <button class="close" {{action "cancelRegister" target="parentView"}}>&times;</button>
+        h3 Register
+      div.modal-body
+        form.form-horizontal
+          div.register-group.control-group
+            label.control-label
+            div.controls
+              span.help-inline {{view.register.error}} 
+            label.control-label First
+            div.controls
+              div.input-prepend
+                span.add-on
+              {{view view.registerTextField  valueBinding="view.register.firstName" placeholder="Enter your first name" }}
+          div.register-group.control-group
+            label.control-label Last
+            div.controls
+              div.input-prepend
+                span.add-on
+              {{view view.registerTextField valueBinding="view.register.lastName" placeholder="Enter your last name"}}
+          div.register-group.control-group
+            label.control-label Email
+            div.controls
+              div.input-prepend
+                span.add-on
+                  i.icon-envelope
+              {{view view.registerTextField type="email" valueBinding="view.register.email" placeholder="Enter your email address"}}
+          div.register-group.control-group
+            label.control-label Password
+            div.controls
+              div.input-prepend
+                span.add-on
+                  i.icon-lock
+              {{view view.registerTextField type="password" valueBinding="view.register.password" placeholder="Enter your password"}}
+          div.control-group
+            div.controls
+              div.row
+                div.span3
+                  <a href="#" {{action "showSignIn" target="parentView"}}>Sign In</a>
+      div.modal-footer
+        <button class="btn" {{action "cancelRegister" target="parentView"}}>Cancel</button>
+        <button class="btn btn-primary" {{action "registerUser" target="parentView"}}>Register</button>

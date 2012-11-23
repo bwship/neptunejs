@@ -1,0 +1,9 @@
+.clear-divs {
+  clear: both;
+}
+.hide {
+  display: none !important;
+}
+.modal.fade {
+  top: -45%;
+}

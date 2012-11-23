@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "_default": {
+            "link": "neptune"
+        }, 
+        "neptune": {
+            "applicationId": "YOUR_APPLICATION_ID", 
+            "masterKey": "YOUR_MASTER_KEY"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.1.12"
+    }
+}

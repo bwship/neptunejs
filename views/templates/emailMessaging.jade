@@ -1,0 +1,51 @@
+script(type='text/x-handlebars', data-template-name='email-messaging')
+  div.container
+    div.row
+      div.span6.offset2
+        div.row
+          h3 Email Messaging
+
+          <button class="btn btn-primary" {{action "showSendMessage" target="parentView"}}>Send a New Email</button>
+
+        div.row
+          table.table.table-bordered
+            caption Previous Messages
+            thead
+              tr
+                th To
+                th Subject
+                th Body
+            tbody
+              {{#each item in view.content}}
+              tr
+                td {{item.toEmail}}
+                td {{item.subject}}
+                td {{item.body}}
+              {{/each}}
+              
+  div#sendEmailMessage(class='modal fade', data-backdrop="static", aria-hidden="true")
+    div.modal-header        
+      <button class="close" {{action "cancelSendMessage" target="parentView"}}>&times;</button>
+      h3 Send Email
+    div.modal-body
+      form.form-horizontal
+        div.register-group.control-group
+          label.control-label To Email
+          div.controls
+            div.input-prepend
+              span.add-on
+                i.icon-envelope  
+            {{view Ember.TextField  valueBinding="view.emailMessage.toEmail" placeholder="Enter email address" }}
+        div.register-group.control-group
+          label.control-label Subject
+          div.controls
+            div.input-prepend
+              span.add-on
+            {{view Ember.TextField valueBinding="view.emailMessage.subject" placeholder="Enter subject"}}
+        div.register-group.control-group
+          label.control-label Body
+          div.controls
+            {{view Ember.TextArea valueBinding="view.emailMessage.body" placeholder="Enter Body"}}
+    div.modal-footer
+      <button class="btn" {{action "cancelSendMessage" target="parentView"}}>Cancel</button>
+      <button class="btn btn-primary" {{action "sendMessage" target="parentView"}}>Send</button>
