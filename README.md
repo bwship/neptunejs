@@ -8,6 +8,10 @@ This is a baseline project meant to provide a solid foundation to build upon the
 - dataSources, by abstracting ember out to have a datasources file, you can easily house all api calls from one location, this makes your controller and views highly testable, as the only models that any ember object knows about besides the datasources file is the Ember objects declared in the dataMOdels.coffee file
 - cloud code - cloud code is implemented to be a foundation for what can be built with cloud code.  It is only currently using beforeSave and afterSave triggers, but can very easily be made to have endpoints
 
+Why use it?
+=========
+The stack of Node for the server, Ember for client-side MVC, and Parse for the backend provides a complete end to end solution that is great for both web and mobile web.  Within minutes, using this project, you can have a website up and running that has login/registering/forgot password, the whole account structure.  I want to expand this out a bit more, providing more functionality, but in it's current format, it is a great building block for any kind of Web App. 
+
 Installation
 =========
 
