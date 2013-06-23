@@ -12,20 +12,20 @@ Neptune.parseDataSource = Ember.Object.create({
     # include facebook script
     ((d) ->
       js = undefined
-      id = 'facebook-jssdk'
-      ref = d.getElementsByTagName('script')[0]
+      id = "facebook-jssdk"
+      ref = d.getElementsByTagName("script")[0]
       return  if d.getElementById(id)
-      js = d.createElement('script')
+      js = d.createElement("script")
       js.id = id
       js.async = true
-      js.src = '//connect.facebook.net/en_US/all.js'
+      js.src = "//connect.facebook.net/en_US/all.js"
       ref.parentNode.insertBefore js, ref
     ) document   
      
     window.fbAsyncInit = ->
 
       Parse.FacebookUtils.init
-        appId: 'FACEBOOK_APP_ID' # Facebook App ID
+        appId: "186994231464821" # Facebook App ID
         cookie: true # enable cookies to allow Parse to access the session
         xfbml: false # parse XFBML
     

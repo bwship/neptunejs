@@ -8,27 +8,27 @@
         var id, js, ref;
 
         js = void 0;
-        id = 'facebook-jssdk';
-        ref = d.getElementsByTagName('script')[0];
+        id = "facebook-jssdk";
+        ref = d.getElementsByTagName("script")[0];
         if (d.getElementById(id)) {
           return;
         }
-        js = d.createElement('script');
+        js = d.createElement("script");
         js.id = id;
         js.async = true;
-        js.src = '//connect.facebook.net/en_US/all.js';
+        js.src = "//connect.facebook.net/en_US/all.js";
         return ref.parentNode.insertBefore(js, ref);
       })(document);
       return window.fbAsyncInit = function() {
         return Parse.FacebookUtils.init({
-          appId: 'FACEBOOK_APP_ID',
+          appId: "186994231464821",
           cookie: true,
           xfbml: false
         });
       };
     },
-    parseApplicationId: 'YOUR_APPLICATION_ID',
-    parseJavaScriptKey: 'YOUR_JAVASCRIPT_KEY',
+    parseApplicationId: 'jBGqIwtog0vTqK9vTxs6Bu4IphtlxL8eZqWMWDfV',
+    parseJavaScriptKey: 'adQdWrRW8Y05kuJKEoDWyfvApuV4hRQyGeuJpKJS',
     login: function(username, password, callback) {
       var _this = this;
 
