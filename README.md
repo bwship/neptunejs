@@ -7,6 +7,8 @@ This is a baseline project meant to provide a solid foundation to build upon the
 - a full implementation of Ember meant to provide a robust framework with which you can then integrate many other pieces of functionality
 - dataSources, by abstracting ember out to have a datasources file, you can easily house all api calls from one location, this makes your controller and views highly testable, as the only models that any ember object knows about besides the datasources file is the Ember objects declared in the dataMOdels.coffee file
 - cloud code - cloud code is implemented to be a foundation for what can be built with cloud code.  It is only currently using beforeSave and afterSave triggers, but can very easily be made to have endpoints
+- Facebook login
+- Twitter login *(coming soon)*
 
 Why use it?
 =========
@@ -21,7 +23,7 @@ Installation
 4. Obtain free keys for Parse, Twilio, and Mailgun to use all the pieces of functionality, though if you want to leave out cloud code, you can jsut set it up to use Parse
 5. Update the following files with your keys
     - /cloud_code/config/global.json - update the applicationId and masterKey with the information from your Parse project (these are used for cloud code to talk to parse)
-    - /public/coffeescripts/dataSources.coffee - update the   parseApplicationId and parseJavaScriptKey properties in this file (these are used for your ember code to talk to parse)
+    - /public/coffeescripts/dataSources.coffee - update the   parseApplicationId and parseJavaScriptKey properties in this file (these are used for your ember code to talk to parse), as well as the Facebook App ID if you wish to integrate Facebook login
     - /cloud_code/cloud/messaging.coffee - update the keys for the twilio and mailgun object
 
 Setting up cloud code

@@ -10,7 +10,31 @@ Neptune.accountController = Ember.ArrayController.create(
   # the current user that is logged into the system
   # this can be user throughout the app to access the current user
   user: null
-   
+  
+  # fbLogin - attempt to log a user into the parse system via Facebook
+  #   parameters
+  #     callback - callback function to return the user and/or error
+  #   returns
+  #     success - Neptune.User object, null
+  #     failure - null, Neptune.Error object 
+  fbLogin: (callback) ->
+    Neptune.parseDataSource.fbLogin (data, error) =>
+      if (!error)
+        this.setUser()
+        callback(this.user, null)
+        tempUser = this.user
+        
+        FB.api "/me", (response) ->
+        
+          tempUser.firstName = response.first_name
+          tempUser.lastName = response.last_name
+    
+          Neptune.parseDataSource.updateUser tempUser, (data, error) =>
+            Neptune.accountController.setUser()
+            callback(data, error)
+      else
+        callback(null, Neptune.parseDataSource.getError(-1, 'Email or password is incorrect', 'ERROR', 'Neptune.AccountController-login'))   
+           
   # login - attempt to log a user into the parse system
   #   parameters
   #     username - the username for the user logging in

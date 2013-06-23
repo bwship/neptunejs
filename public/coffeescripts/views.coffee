@@ -90,7 +90,21 @@ Neptune.NavigationView = Ember.View.extend(
       else
         $(".register-group").addClass("error")
         @set "register.error", error.message
-
+        
+  fbLogin: ->
+    Neptune.accountController.fbLogin (data, error) =>
+      if (!error)
+        $("#register").modal "hide"
+        $("#signIn").modal "hide"
+      else
+        $(".register-group").addClass("error")
+        @set "register.error", error.message
+        $(".signin-group").addClass("error")
+        @set "login.error", error.message
+        
+  twLogin: ->
+    alert('Twitter sign-in coming soon!')
+        
   # enter key pressed on the sign in page, call signIn
   registerTextField: Ember.TextField.extend(
     insertNewline: ->
