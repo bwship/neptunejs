@@ -51,6 +51,9 @@ script(type='text/x-handlebars', data-template-name='navigation')
         <button class="close" {{action "cancelSignIn" target="parentView"}}>&times;</button>
         h3 Sign In            
       div.modal-body  
+        <img class="fb_icon" src="images/fb.png" {{action "fbLogin" target="parentView"}}/>
+        <img class="tw_icon" src="images/tw.png" {{action "twLogin" target="parentView"}}/>
+        h5.or or
         form.form-horizontal
           div.signin-group.control-group
             label.control-label
@@ -85,6 +88,9 @@ script(type='text/x-handlebars', data-template-name='navigation')
         <button class="close" {{action "cancelRegister" target="parentView"}}>&times;</button>
         h3 Register
       div.modal-body
+        <img class="fb_icon" src="images/fb.png" {{action "fbLogin" target="parentView"}}/>
+        <img class="tw_icon" src="images/tw.png" {{action "twLogin" target="parentView"}}/>
+        h5.or or
         form.form-horizontal
           div.register-group.control-group
             label.control-label

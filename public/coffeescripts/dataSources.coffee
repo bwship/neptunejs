@@ -8,6 +8,27 @@ Neptune.parseDataSource = Ember.Object.create({
   init: ->
     this._super()
     Parse.initialize this.parseApplicationId, this.parseJavaScriptKey
+    
+    # include facebook script
+    ((d) ->
+      js = undefined
+      id = 'facebook-jssdk'
+      ref = d.getElementsByTagName('script')[0]
+      return  if d.getElementById(id)
+      js = d.createElement('script')
+      js.id = id
+      js.async = true
+      js.src = '//connect.facebook.net/en_US/all.js'
+      ref.parentNode.insertBefore js, ref
+    ) document   
+     
+    window.fbAsyncInit = ->
+
+      Parse.FacebookUtils.init
+        appId: 'FACEBOOK_APP_ID' # Facebook App ID
+        cookie: true # enable cookies to allow Parse to access the session
+        xfbml: false # parse XFBML
+    
 
   # application id property to connect to parse
   parseApplicationId: 'YOUR_APPLICATION_ID'
@@ -28,6 +49,25 @@ Neptune.parseDataSource = Ember.Object.create({
       success: (data) =>
         callback(this.getCurrentUser, null)
       error: (error) =>
+        callback(null, this.getError(error.code, error.message, 'ERROR', 'Neptune.parseDataSource-login'))
+        
+  # fbLogin - attempt to log a user into the parse system via Facebook
+  #   parameters
+  #     callback - callback function to return the user and/or error
+  #   returns
+  #     success - Neptune.User object, null
+  #     failure - null, Neptune.Error object 
+  fbLogin: (callback) ->
+    Parse.FacebookUtils.logIn null,
+      success: (user) ->
+        # user is new
+        unless user.existed()
+          callback(user, null)
+        # user has registered in the past
+        else
+          callback(user, null)
+
+      error: (user, error) ->
         callback(null, this.getError(error.code, error.message, 'ERROR', 'Neptune.parseDataSource-login'))
 
   # logout - log the current user out of the system
@@ -102,6 +142,13 @@ Neptune.parseDataSource = Ember.Object.create({
   #   returns - a Neptune.User object if there is a current user, otherwise null
   getCurrentUser: ->
     if (Parse.User.current())
+      # user is from facebook
+      ###if Parse.User.current().get('authData').facebook
+        return Neptune.User.create(
+          objectId: Parse.User.current().id
+        )
+      
+      else###
       return Neptune.User.create(
         objectId: Parse.User.current().id
         userName: Parse.User.current().attributes.username
@@ -109,6 +156,9 @@ Neptune.parseDataSource = Ember.Object.create({
         lastName: Parse.User.current().attributes.lastName 
       )
     else
+      #FB.getLoginStatus (status) ->
+      #  console.log status
+
       return null
 
   # getEmailMessages - return email messages sent out by the current user
