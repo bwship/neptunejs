@@ -1,6 +1,11 @@
 Neptune - Node-Ember-Parse all in Tune
 =========
 
+TODO
+=========
+- update project to use the newest version of ember.  This is currently using a prerelease of ember.
+- add grunt for the build process
+
 This is a baseline project meant to provide a solid foundation to build upon the Node/Ember/Parse stack.  It provides the following pieces of functionality. (It also uses coffeescript, twitter bootstrap, twilio, and mailgun, handlebars.js, jquery and jade)
 
 - out of the box login/logout/register capabilities using Parse as the data source
