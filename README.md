@@ -1,20 +1,6 @@
 Neptune - Node-Ember-Parse all in Tune
 =========
 
-TODO
-=========
-- update project to use the newest version of ember.  This is currently using a prerelease of ember.
-- add grunt for the build process
-
-This is a baseline project meant to provide a solid foundation to build upon the Node/Ember/Parse stack.  It provides the following pieces of functionality. (It also uses coffeescript, twitter bootstrap, twilio, and mailgun, handlebars.js, jquery and jade)
-
-- out of the box login/logout/register capabilities using Parse as the data source
-- a full implementation of Ember meant to provide a robust framework with which you can then integrate many other pieces of functionality
-- dataSources, by abstracting ember out to have a datasources file, you can easily house all api calls from one location, this makes your controller and views highly testable, as the only models that any ember object knows about besides the datasources file is the Ember objects declared in the dataMOdels.coffee file
-- cloud code - cloud code is implemented to be a foundation for what can be built with cloud code.  It is only currently using beforeSave and afterSave triggers, but can very easily be made to have endpoints
-- Facebook login
-- Twitter login *(coming soon)*
-
 Why use it?
 =========
 The stack of Node for the server, Ember for client-side MVC, and Parse for the backend provides a complete end to end solution that is great for both web and mobile web.  Within minutes, using this project, you can have a website up and running that has login/registering/forgot password, the whole account structure.  I want to expand this out a bit more, providing more functionality, but in it's current format, it is a great building block for any kind of Web App. 
@@ -52,4 +38,18 @@ Viewing the Site
 =========
 
 - open your browser and go to localhost:3002 or whatever you set the port to in the app.coffee file
+
+TODO
+=========
+- update project to use the newest version of ember.  This is currently using a prerelease of ember.
+- add grunt for the build process
+
+This is a baseline project meant to provide a solid foundation to build upon the Node/Ember/Parse stack.  It provides the following pieces of functionality. (It also uses coffeescript, twitter bootstrap, twilio, and mailgun, handlebars.js, jquery and jade)
+
+- out of the box login/logout/register capabilities using Parse as the data source
+- a full implementation of Ember meant to provide a robust framework with which you can then integrate many other pieces of functionality
+- dataSources, by abstracting ember out to have a datasources file, you can easily house all api calls from one location, this makes your controller and views highly testable, as the only models that any ember object knows about besides the datasources file is the Ember objects declared in the dataMOdels.coffee file
+- cloud code - cloud code is implemented to be a foundation for what can be built with cloud code.  It is only currently using beforeSave and afterSave triggers, but can very easily be made to have endpoints
+- Facebook login
+- Twitter login *(coming soon)*
 
