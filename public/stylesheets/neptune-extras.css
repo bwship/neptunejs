@@ -1,0 +1,17 @@
+.fb_icon,.tw_icon {
+    cursor:pointer;
+}
+
+.fb_icon:hover,.tw_icon:hover {
+    opacity:.9;
+}
+
+.fb_icon {
+    margin-left: 62px;
+    margin-right: 11px;
+}
+
+.or {
+    text-align: center;
+    margin-bottom: 0px;
+}
