@@ -2,26 +2,11 @@
   clear: both;
 }
 .hide {
-  display: none !important;
+  display: none;
 }
 .modal.fade {
   top: -45%;
 }
-
-.fb_icon,.tw_icon {
-  cursor:pointer;
-}
-
-.fb_icon:hover,.tw_icon:hover {
-  opacity:.9;
-}
-
-.fb_icon {
-  margin-left: 62px;
-  margin-right: 11px;
-}
-
-.or {
-  text-align: center;
-  margin-bottom: 0px;
+.help-inline {
+  margin-bottom: 10px;
 }
