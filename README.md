@@ -9,7 +9,7 @@ Installation
 =========
 
 1. Install Node.js from nodejs.org
-2. Install the Parse command line utility by running the curl command show on https://parse.com/docs/cloud_code_guide
+2. Install the Parse command line utility by running the curl command shown on https://parse.com/docs/cloud_code_guide
 3. Clone or fork this repo
 4. Obtain free keys for Parse, Twilio, and Mailgun to use all the pieces of functionality, though if you want to leave out cloud code, you can jsut set it up to use Parse
 5. Update the following files with your keys
@@ -30,10 +30,10 @@ Setting up cloud code
 Running the site
 =========
 
-from terminal in the root run the following:
+From terminal in the root of the project run the following:
 ```
 npm install
-node app
+grunt
 ```
 
 Viewing the Site

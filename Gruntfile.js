@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
 
     grunt.initConfig({
-        
+
         watch: {
             less: {
                 files: ['public/less/**/*.less'],
@@ -26,8 +26,16 @@ module.exports = function (grunt) {
                 dest: "public/stylesheets"
             }
         },
-        "coffee": {
-            
+        shell: {
+            devserver: {
+                command: 'node app',
+                options: {
+                    async: true,
+                },
+            },
+        },
+        coffee: {
+
             glob_to_multiple: {
                 expand: true,
                 flatten: true,
@@ -42,15 +50,15 @@ module.exports = function (grunt) {
                     'routes/main.js': 'routes/main.coffee'
                 }
             }
-          
+
         }
     });
     grunt.loadNpmTasks('grunt-contrib-coffee');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-less');
-    
+    grunt.loadNpmTasks('grunt-shell-spawn');
 
-    grunt.registerTask('default', ['watch', 'less', 'coffee']);
+
+    grunt.registerTask('default', ['less', 'coffee', 'shell:devserver', 'watch']);
     grunt.registerTask('build', ['less', 'coffee']);
-
 };

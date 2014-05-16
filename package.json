@@ -14,7 +14,8 @@
         "grunt-ember-templates": "~0.4.12",
         "grunt-contrib-watch": "~0.4.0",
         "grunt-contrib-clean": "~0.4.0",
-        "grunt-contrib-coffee": "~0.7.0"
+        "grunt-contrib-coffee": "~0.7.0",
+        "grunt-shell-spawn": "0.3.x"
     },
     "engines": {
         "node": ">= 0.6.14",
