@@ -14,33 +14,42 @@ Installation
 4. Obtain free keys for Parse, Twilio, and Mailgun to use all the pieces of functionality, though if you want to leave out cloud code, you can jsut set it up to use Parse
 5. Update the following files with your keys
     - /cloud_code/config/global.json - update the applicationId and masterKey with the information from your Parse project (these are used for cloud code to talk to parse)
-    - /public/coffeescripts/dataSources.coffee - update the   parseApplicationId and parseJavaScriptKey properties in this file (these are used for your ember code to talk to parse), as well as the Facebook App ID if you wish to integrate Facebook login
+    - /public/coffeescripts/dataSources.coffee - update the parseApplicationId and parseJavaScriptKey properties in this file (these are used for your ember code to talk to parse), as well as the Facebook App ID if you wish to integrate Facebook login
     - /cloud_code/cloud/messaging.coffee - update the keys for the twilio and mailgun object
+
+Installing dependencies
+=========
+
+From terminal in the root directory do the following commands
+```
+npm install
+bower install
+```
 
 Setting up cloud code
 =========
 
-- from terminal in the root directory do the following commands
+From terminal in the root directory do the following commands
 
-  cd cloud_code
-  parse deploy
+```
+cd cloud_code
+parse deploy
+```
 
-  this will deploy the cloud code with your keys to parse
+This will deploy the cloud code with your keys to parse
 
 Running the site
 =========
 
 From terminal in the root of the project run the following:
 ```
-npm install
-bower install
 grunt
 ```
 
 Viewing the Site
 =========
 
-- open your browser and go to localhost:3002 or whatever you set the port to in the app.coffee file
+Open your browser and go to localhost:3002 or whatever you set the port to in the app.coffee file
 
 TODO
 =========

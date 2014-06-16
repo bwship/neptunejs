@@ -16,11 +16,11 @@ script(type='text/x-handlebars', data-template-name='my-profile')
               td {{view.user.userName}}
               td {{view.user.firstName}}
               td {{view.user.lastName}}
-              td <a {{action showEdit target="parentView"}} href="#">Edit</a>
-    
+              td <a {{action showEdit target="view"}} href="#">Edit</a>
+
   div#editUser(class='modal fade', data-backdrop="static", aria-hidden="true")
-    div.modal-header        
-      <button class="close" {{action "cancelEdit" target="parentView"}}>&times;</button>
+    div.modal-header
+      <button class="close" {{action "cancelEdit" target="view"}}>&times;</button>
       h3 Edit My Profile
     div.modal-body
       form.form-horizontal
@@ -37,5 +37,5 @@ script(type='text/x-handlebars', data-template-name='my-profile')
               span.add-on
             {{view view.updateTextField valueBinding="view.editUser.lastName" placeholder="Enter your last name"}}
     div.modal-footer
-      <button class="btn" {{action "cancelEdit" target="parentView"}}>Cancel</button>
-      <button class="btn btn-primary" {{action "updateUser" target="parentView"}}>Save</button>
+      <button class="btn" {{action "cancelEdit" target="view"}}>Cancel</button>
+      <button class="btn btn-primary" {{action "updateUser" target="view"}}>Save</button>

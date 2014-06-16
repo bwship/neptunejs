@@ -6,64 +6,64 @@ script(type='text/x-handlebars', data-template-name='navigation')
           li
             <a {{action doHome }} href="#">Home</a>
           li
-            <a {{action doMyProfile }} {{bindAttr class="view.hideLogout"}} href="#">My Profile</a>
+            <a {{action doMyProfile }} {{bind-attr class="view.hideLogout"}} href="#">My Profile</a>
           li
-            <a {{action doSmsMessaging }} {{bindAttr class="view.hideLogout"}} href="#" class="loggedIn">SMSing</a>
+            <a {{action doSmsMessaging }} {{bind-attr class="view.hideLogout"}} href="#" class="loggedIn">SMSing</a>
           li
-            <a {{action doEmailMessaging }} {{bindAttr class="view.hideLogout"}} href="#" class="loggedIn">Emailing</a>
+            <a {{action doEmailMessaging }} {{bind-attr class="view.hideLogout"}} href="#" class="loggedIn">Emailing</a>
           li
-            <a {{action logout target="parentView"}} href="#" {{bindAttr class="view.hideLogout"}}>Sign Out</a>
+            <a {{action logout target="view"}} href="#" {{bind-attr class="view.hideLogout"}}>Sign Out</a>
           li
-            <a {{action showRegister target="parentView"}} {{bindAttr class="view.hideLogin"}} href="#">Register</a>
+            <a {{action showRegister target="view"}} {{bind-attr class="view.hideLogin"}} href="#">Register</a>
           li
-            <a {{action showSignIn target="parentView"}} {{bindAttr class="view.hideLogin"}} href="#">Sign In</a>
-  
-  div  
+            <a {{action showSignIn target="view"}} {{bind-attr class="view.hideLogin"}} href="#">Sign In</a>
+
+  div
     div#forgotPassword(class='modal fade', data-backdrop="static", aria-hidden="true")
-      div.modal-header        
-        <button class="close" {{action "cancelForgotPassword" target="parentView"}}>&times;</button>
+      div.modal-header
+        <button class="close" {{action "cancelForgotPassword" target="view"}}>&times;</button>
         h3 Forgot Password
-      div.modal-body       
+      div.modal-body
         form.form-horizontal
           div.forgot-password-group.control-group
             label.control-label
             div.controls
-              span.help-inline {{view.forgotPassword.error}} 
+              span.help-inline {{view.forgotPassword.error}}
             label.control-label Email
             div.controls
               div.input-prepend
                 span.add-on
-                  i.icon-envelope                        
+                  i.icon-envelope
               {{view Ember.TextField valueBinding="view.forgotPassword.email" placeholder="Enter your email address"}}
           div.forgot-password-group.control-group
             div.controls
               div.row
-                div.span1                            
-                  <a href="#" {{action "showRegister" target="parentView"}}>Register</a>
+                div.span1
+                  <a href="#" {{action "showRegister" target="view"}}>Register</a>
                 div.span2
-                  <a href="#" {{action "showSignIn" target="parentView"}}>Sign In</a>                           
+                  <a href="#" {{action "showSignIn" target="view"}}>Sign In</a>
       div.modal-footer
-        <button class="btn" {{action "cancelForgotPassword" target="parentView"}}>Cancel</button>
-        <button class="btn btn-primary" {{action "requestForgotPassword" target="parentView"}}>Send</button>
-        
+        <button class="btn" {{action "cancelForgotPassword" target="view"}}>Cancel</button>
+        <button class="btn btn-primary" {{action "requestForgotPassword" target="view"}}>Send</button>
+
     div#signIn(class='modal fade', data-backdrop="static", aria-hidden="true")
-      div.modal-header        
-        <button class="close" {{action "cancelSignIn" target="parentView"}}>&times;</button>
-        h3 Sign In            
-      div.modal-body  
-        <img class="fb_icon" src="images/fb.png" {{action "fbLogin" target="parentView"}}/>
-        <img class="tw_icon" src="images/tw.png" {{action "twLogin" target="parentView"}}/>
+      div.modal-header
+        <button class="close" {{action "cancelSignIn" target="view"}}>&times;</button>
+        h3 Sign In
+      div.modal-body
+        <img class="fb_icon" src="images/fb.png" {{action "fbLogin" target="view"}}/>
+        <img class="tw_icon" src="images/tw.png" {{action "twLogin" target="view"}}/>
         h5.or or
         form.form-horizontal
           div.signin-group.control-group
             label.control-label
             div.controls
-              span.help-inline {{view.login.error}} 
+              span.help-inline {{view.login.error}}
             label.control-label Email
             div.controls
               div.input-prepend
                 span.add-on
-                  i.icon-envelope                        
+                  i.icon-envelope
               {{view view.signInTextField valueBinding="view.login.username" placeholder="Enter your email address"}}
           div.signin-group.control-group
             label.control-label Password
@@ -75,27 +75,27 @@ script(type='text/x-handlebars', data-template-name='navigation')
           div.control-group
             div.controls
               div.row
-                div.span1                            
-                  <a href="#" {{action "showRegister" target="parentView"}}>Register</a>
+                div.span1
+                  <a href="#" {{action "showRegister" target="view"}}>Register</a>
                 div.span2
-                  <a href="#" {{action "showForgotPassword" target="parentView"}}>Forgot password?</a>                            
+                  <a href="#" {{action "showForgotPassword" target="view"}}>Forgot password?</a>
       div.modal-footer
-        <button class="btn" {{action "cancelSignIn" target="parentView"}}>Cancel</button>
-        <button class="btn btn-primary" {{action "signIn" target="parentView"}}>Sign In</button>
-          
+        <button class="btn" {{action "cancelSignIn" target="view"}}>Cancel</button>
+        <button class="btn btn-primary" {{action "signIn" target="view"}}>Sign In</button>
+
     div#register(class='modal fade', data-backdrop="static", aria-hidden="true")
-      div.modal-header        
-        <button class="close" {{action "cancelRegister" target="parentView"}}>&times;</button>
+      div.modal-header
+        <button class="close" {{action "cancelRegister" target="view"}}>&times;</button>
         h3 Register
       div.modal-body
-        <img class="fb_icon" src="images/fb.png" {{action "fbLogin" target="parentView"}}/>
-        <img class="tw_icon" src="images/tw.png" {{action "twLogin" target="parentView"}}/>
+        <img class="fb_icon" src="images/fb.png" {{action "fbLogin" target="view"}}/>
+        <img class="tw_icon" src="images/tw.png" {{action "twLogin" target="view"}}/>
         h5.or or
         form.form-horizontal
           div.register-group.control-group
             label.control-label
             div.controls
-              span.help-inline {{view.register.error}} 
+              span.help-inline {{view.register.error}}
             label.control-label First
             div.controls
               div.input-prepend
@@ -125,7 +125,7 @@ script(type='text/x-handlebars', data-template-name='navigation')
             div.controls
               div.row
                 div.span3
-                  <a href="#" {{action "showSignIn" target="parentView"}}>Sign In</a>
+                  <a href="#" {{action "showSignIn" target="view"}}>Sign In</a>
       div.modal-footer
-        <button class="btn" {{action "cancelRegister" target="parentView"}}>Cancel</button>
-        <button class="btn btn-primary" {{action "registerUser" target="parentView"}}>Register</button>
+        <button class="btn" {{action "cancelRegister" target="view"}}>Cancel</button>
+        <button class="btn btn-primary" {{action "registerUser" target="view"}}>Register</button>

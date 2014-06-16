@@ -5,7 +5,7 @@ script(type='text/x-handlebars', data-template-name='email-messaging')
         div.row
           h3 Email Messaging
 
-          <button class="btn btn-primary" {{action "showSendMessage" target="parentView"}}>Send a New Email</button>
+          <button class="btn btn-primary" {{action "showSendMessage" target="view"}}>Send a New Email</button>
 
         div.row
           table.table.table-bordered
@@ -22,10 +22,10 @@ script(type='text/x-handlebars', data-template-name='email-messaging')
                 td {{item.subject}}
                 td {{item.body}}
               {{/each}}
-              
+
   div#sendEmailMessage(class='modal fade', data-backdrop="static", aria-hidden="true")
-    div.modal-header        
-      <button class="close" {{action "cancelSendMessage" target="parentView"}}>&times;</button>
+    div.modal-header
+      <button class="close" {{action "cancelSendMessage" target="view"}}>&times;</button>
       h3 Send Email
     div.modal-body
       form.form-horizontal
@@ -34,7 +34,7 @@ script(type='text/x-handlebars', data-template-name='email-messaging')
           div.controls
             div.input-prepend
               span.add-on
-                i.icon-envelope  
+                i.icon-envelope
             {{view Ember.TextField  valueBinding="view.emailMessage.toEmail" placeholder="Enter email address" }}
         div.register-group.control-group
           label.control-label Subject
@@ -47,5 +47,5 @@ script(type='text/x-handlebars', data-template-name='email-messaging')
           div.controls
             {{view Ember.TextArea valueBinding="view.emailMessage.body" placeholder="Enter Body"}}
     div.modal-footer
-      <button class="btn" {{action "cancelSendMessage" target="parentView"}}>Cancel</button>
-      <button class="btn btn-primary" {{action "sendMessage" target="parentView"}}>Send</button>
+      <button class="btn" {{action "cancelSendMessage" target="view"}}>Cancel</button>
+      <button class="btn btn-primary" {{action "sendMessage" target="view"}}>Send</button>

@@ -5,18 +5,17 @@ Neptune.HomeView = Ember.View.extend(
 Neptune.NavigationView = Ember.View.extend(
 
   init: ->
-    this._super()
     if (this.isLoggedIn)
       @set "hideLogin", "hide"
       @set "hideLogout", ""
     else
       @set "hideLogin", ""
       @set "hideLogout", "hide"
-    
+
   templateName: 'navigation'
 
   hideLogin: "",
-  
+
   hideLogout: "hide",
 
   isLoggedInBinding: 'Neptune.accountController.isLoggedIn'
@@ -36,105 +35,107 @@ Neptune.NavigationView = Ember.View.extend(
 
   register: null,
 
-  # sign a user in
-  showSignIn: ->
-    $(".error").removeClass "error"
-    
-    @set "login", Neptune.Login.create()
-    
-    $("#register").modal "hide"
-    $("#forgotPassword").modal "hide"
+  actions:
+    # sign a user in
+    showSignIn: ->
+      $(".error").removeClass "error"
 
-    $("#signIn").modal "show"
+      @set "login", Neptune.Login.create()
 
-  cancelSignIn: ->
-    $("#signIn").modal "hide"
+      $("#register").modal "hide"
+      $("#forgotPassword").modal "hide"
 
-  signIn: ->
-    Neptune.accountController.login this.login, (data, error) =>
-      if (!error)
-        $("#signIn").modal "hide"
-      else
-        $(".signin-group").addClass("error")
-        @set "login.error", error.message
+      $("#signIn").modal "show"
+
+    signIn: ->
+      Neptune.accountController.login this.login, (data, error) =>
+        if (!error)
+          $("#signIn").modal "hide"
+        else
+          $(".signin-group").addClass("error")
+          @set "login.error", error.message
+
+    cancelSignIn: ->
+      $("#signIn").modal "hide"
+
+    fbLogin: ->
+      Neptune.accountController.fbLogin (data, error) =>
+        if (!error)
+          $("#register").modal "hide"
+          $("#signIn").modal "hide"
+        else
+          $(".register-group").addClass("error")
+          @set "register.error", error.message
+          $(".signin-group").addClass("error")
+          @set "login.error", error.message
+
+    twLogin: ->
+      alert('Twitter sign-in coming soon!')
+
+    # log a user out
+    logout: ->
+      Neptune.accountController.logout()
+      Neptune.Router.router.transitionTo('home')
+
+    # register a user
+    showRegister: ->
+      $(".error").removeClass "error"
+
+      @set "register", Neptune.Register.create()
+
+      $("#signIn").modal "hide"
+      $("#forgotPassword").modal "hide"
+
+      $("#register").modal "show"
+
+    registerUser: ->
+      Neptune.accountController.register this.register, (data, error) =>
+        if (!error)
+          $("#register").modal "hide"
+        else
+          $(".register-group").addClass("error")
+          @set "register.error", error.message
+
+    cancelRegister: ->
+      $("#register").modal "hide"
+
+    # forgot password
+    showForgotPassword: ->
+      $(".error").removeClass "error"
+
+      @set "forgotPassword", Neptune.ForgotPassword.create()
+
+      $("#signIn").modal "hide"
+      $("#forgotPassword").modal "show"
+
+    cancelForgotPassword: ->
+      $("#forgotPassword").modal "hide"
+
+    requestForgotPassword: ->
+      Neptune.accountController.requestPasswordReset this.forgotPassword, (data, error) =>
+        if (!error)
+          $("#forgotPassword").modal "hide"
+        else
+          $(".forgot-password-group").addClass("error")
+          @set "forgotPassword.error", error.message
+  # /actions
 
   # enter key pressed on the sign in page, call signIn
   signInTextField: Ember.TextField.extend(
     insertNewline: ->
-      this.get('parentView').signIn()
+      this.get('parentView').send('signIn')
   )
 
-  # log a user out
-  logout: ->
-    Neptune.accountController.logout()
-    Neptune.router.transitionTo('home', null)
-
-  # register a user
-  showRegister: ->
-    $(".error").removeClass "error"
-    
-    @set "register", Neptune.Register.create()
-    
-    $("#signIn").modal "hide"
-    $("#forgotPassword").modal "hide"
-
-    $("#register").modal "show"
-
-  cancelRegister: ->
-    $("#register").modal "hide"
-
-  registerUser: ->
-    Neptune.accountController.register this.register, (data, error) =>
-      if (!error)
-        $("#register").modal "hide"
-      else
-        $(".register-group").addClass("error")
-        @set "register.error", error.message
-        
-  fbLogin: ->
-    Neptune.accountController.fbLogin (data, error) =>
-      if (!error)
-        $("#register").modal "hide"
-        $("#signIn").modal "hide"
-      else
-        $(".register-group").addClass("error")
-        @set "register.error", error.message
-        $(".signin-group").addClass("error")
-        @set "login.error", error.message
-        
-  twLogin: ->
-    alert('Twitter sign-in coming soon!')
-        
   # enter key pressed on the sign in page, call signIn
   registerTextField: Ember.TextField.extend(
     insertNewline: ->
-      this.get('parentView').registerUser()
+      this.get('parentView').send('registerUser')
   )
-
-  # forgot password
-  showForgotPassword: ->
-    $(".error").removeClass "error"
-
-    @set "forgotPassword", Neptune.ForgotPassword.create()
-    
-    $("#signIn").modal "hide"
-    $("#forgotPassword").modal "show"
-  
-  cancelForgotPassword: ->
-    $("#forgotPassword").modal "hide"
-
-  requestForgotPassword: ->
-    Neptune.accountController.requestPasswordReset this.forgotPassword, (data, error) =>
-      if (!error)
-        $("#forgotPassword").modal "hide"
-      else
-        $(".forgot-password-group").addClass("error")
-        @set "forgotPassword.error", error.message
 
   # show a user's inbox modal
   showInboxModal: ->
     $("#inboxModal").modal "show"
-  
+
   # show the filter modal
   showFilter: ->
     $("#filter").modal "show"
@@ -152,33 +153,35 @@ Neptune.MyProfileView = Ember.View.extend(
 
   editUser: null
 
-  showEdit: ->
-    @set 'editUser', Neptune.User.create()
-    @set 'editUser.firstName', @get 'user.firstName'
-    @set 'editUser.lastName', @get 'user.lastName'    
+  actions:
+    showEdit: ->
+      @set 'editUser', Neptune.User.create()
+      @set 'editUser.firstName', @get 'user.firstName'
+      @set 'editUser.lastName', @get 'user.lastName'
 
-    $('#editUser').modal 'show'
+      $('#editUser').modal 'show'
 
-  cancelEdit: ->
-    $('#editUser').modal 'hide'
+    cancelEdit: ->
+      $('#editUser').modal 'hide'
+
+    updateUser: ->
+      Neptune.accountController.updateUser this.editUser, (user, error) ->
+        if (!error)
+          $("#editUser").modal "hide"
+        else
+          alert 'Error updating user, please try again later.'
+  #/actions
 
   # enter key pressed on the sign in page, call signIn
   updateTextField: Ember.TextField.extend(
     insertNewline: ->
-      this.get('parentView').updateUser()
+      this.get('parentView').send('updateUser')
   )
-
-  updateUser: ->
-    Neptune.accountController.updateUser this.editUser, (user, error) ->
-      if (!error)
-        $("#editUser").modal "hide"
-      else
-        alert 'Error updating user, please try again later.'
 
 )
 
 Neptune.EmailMessagingView = Ember.View.extend(
-  
+
   templateName: 'email-messaging'
 
   # Array of Neptune.EmailMessage objects of previously sent emails
@@ -187,19 +190,20 @@ Neptune.EmailMessagingView = Ember.View.extend(
   # Neptune.EmailMessage object used for adding a new email message
   emailMessage: null
 
-  showSendMessage: ->
-    @set 'emailMessage', Neptune.EmailMessage.create()
+  actions:
+    showSendMessage: ->
+      @set 'emailMessage', Neptune.EmailMessage.create()
 
-    $('#sendEmailMessage').modal 'show'
+      $('#sendEmailMessage').modal 'show'
 
-  cancelSendMessage: ->
-    $('#sendEmailMessage').modal 'hide'
+    cancelSendMessage: ->
+      $('#sendEmailMessage').modal 'hide'
 
-  sendMessage: ->
-    Neptune.emailMessagingController.sendEmailMessage this.emailMessage, (data, error) ->
-      if (!error)
-        $('#sendEmailMessage').modal 'hide'
-
+    sendMessage: ->
+      Neptune.emailMessagingController.sendEmailMessage this.emailMessage, (data, error) ->
+        if (!error)
+          $('#sendEmailMessage').modal 'hide'
+  #/actions
 )
 
 Neptune.SmsMessagingView = Ember.View.extend(
@@ -212,16 +216,18 @@ Neptune.SmsMessagingView = Ember.View.extend(
   # Neptune.SmsMessage object used for adding a new sms message
   smsMessage: null
 
-  showSendMessage: ->
-    @set 'smsMessage', Neptune.SmsMessage.create()
+  actions:
+    showSendMessage: ->
+      @set 'smsMessage', Neptune.SmsMessage.create()
 
-    $('#sendSmsMessage').modal 'show'
+      $('#sendSmsMessage').modal 'show'
 
-  cancelSendMessage: ->
-    $('#sendSmsMessage').modal 'hide'
+    cancelSendMessage: ->
+      $('#sendSmsMessage').modal 'hide'
 
-  sendMessage: ->
-    Neptune.smsMessagingController.sendSmsMessage this.smsMessage, (data, error) ->
-      if (!error)
-        $('#sendSmsMessage').modal 'hide'
+    sendMessage: ->
+      Neptune.smsMessagingController.sendSmsMessage this.smsMessage, (data, error) ->
+        if (!error)
+          $('#sendSmsMessage').modal 'hide'
+  #/actions
 )

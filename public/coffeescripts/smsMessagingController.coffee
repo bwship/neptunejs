@@ -1,9 +1,8 @@
 Neptune.smsMessagingController = Ember.ArrayController.create(
-  
-  # load all sms messages sent be the user 
+
+  # load all sms messages sent be the user
   init: ->
     this.loadSmsMessages()
-    this._super()
 
   # array of Neptune.SmsMessage objects
   content: []

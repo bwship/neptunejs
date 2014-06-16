@@ -47,7 +47,10 @@ module.exports = function (grunt) {
             compile: {
                 files: {
                     'app.js': 'app.coffee',
-                    'routes/main.js': 'routes/main.coffee'
+                    'routes/main.js': 'routes/main.coffee',
+                    'cloud_code/cloud/errorLog.js': 'cloud_code/cloud/errorLog.coffee',
+                    'cloud_code/cloud/main.js': 'cloud_code/cloud/main.coffee',
+                    'cloud_code/cloud/messaging.js': 'cloud_code/cloud/messaging.coffee'
                 }
             }
 

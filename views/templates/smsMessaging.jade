@@ -5,7 +5,7 @@ script(type='text/x-handlebars', data-template-name='sms-messaging')
         div.row
           h3 SMS Messaging
 
-          <button class="btn btn-primary" {{action "showSendMessage" target="parentView"}}>Send a New SMS</button>
+          <button class="btn btn-primary" {{action "showSendMessage" target="view"}}>Send a New SMS</button>
 
         div.row
           table.table.table-bordered
@@ -20,10 +20,10 @@ script(type='text/x-handlebars', data-template-name='sms-messaging')
                 td {{item.toPhoneNumber}}
                 td {{item.message}}
               {{/each}}
-              
+
   div#sendSmsMessage(class='modal fade', data-backdrop="static", aria-hidden="true")
-    div.modal-header        
-      <button class="close" {{action "cancelSendMessage" target="parentView"}}>&times;</button>
+    div.modal-header
+      <button class="close" {{action "cancelSendMessage" target="view"}}>&times;</button>
       h3 Send SMS
     div.modal-body
       form.form-horizontal
@@ -40,5 +40,5 @@ script(type='text/x-handlebars', data-template-name='sms-messaging')
               span.add-on
             {{view Ember.TextField valueBinding="view.smsMessage.message" placeholder="Enter message"}}
     div.modal-footer
-      <button class="btn" {{action "cancelSendMessage" target="parentView"}}>Cancel</button>
-      <button class="btn btn-primary" {{action "sendMessage" target="parentView"}}>Send</button>
+      <button class="btn" {{action "cancelSendMessage" target="view"}}>Cancel</button>
+      <button class="btn btn-primary" {{action "sendMessage" target="view"}}>Send</button>
