@@ -17,5 +17,5 @@ npm-debug.log
 # Ignore compiled js and css files
 *.js
 public/javascripts/*.js
-!public/javascripts/libs/*.js
 public/stylesheets/neptune.css
+public/bower_components/

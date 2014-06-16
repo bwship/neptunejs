@@ -33,6 +33,7 @@ Running the site
 From terminal in the root of the project run the following:
 ```
 npm install
+bower install
 grunt
 ```
 
