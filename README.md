@@ -32,6 +32,7 @@ Setting up cloud code
 From terminal in the root directory do the following commands
 
 ```
+grunt coffee
 cd cloud_code
 parse deploy
 ```
