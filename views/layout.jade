@@ -15,7 +15,8 @@ html
     //**************************************************************************
 
     title= title
-    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/neptune.css')
     link(rel='stylesheet', href='/stylesheets/neptune-extras.css')
   body
@@ -29,8 +30,8 @@ html
     include templates/myProfile
 
     // library scripts
-    script(src='/bower_components/jquery/jquery.min.js')
-    script(src='/bower_components/bootstrap/docs/assets/js/bootstrap.min.js')
+    script(src='/bower_components/jquery/dist/jquery.min.js')
+    script(src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
     script(src='/bower_components/handlebars/handlebars.min.js')
     script(src='/bower_components/ember/ember.min.js')
     script(src='/bower_components/parse-js-sdk/lib/parse.min.js')

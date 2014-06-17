@@ -1,7 +1,7 @@
 script(type='text/x-handlebars', data-template-name='sms-messaging')
   div.container
     div.row
-      div.span6.offset2
+      div.col-md-8.col-md-offset-2
         div.row
           h3 SMS Messaging
 
@@ -22,23 +22,26 @@ script(type='text/x-handlebars', data-template-name='sms-messaging')
               {{/each}}
 
   div#sendSmsMessage(class='modal fade', data-backdrop="static", aria-hidden="true")
-    div.modal-header
-      <button class="close" {{action "cancelSendMessage" target="view"}}>&times;</button>
-      h3 Send SMS
-    div.modal-body
-      form.form-horizontal
-        div.control-group
-          label.control-label To Phone Number
-          div.controls
-            div.input-prepend
-              span.add-on
-            {{view Ember.TextField  valueBinding="view.smsMessage.toPhoneNumber" placeholder="Enter phone number" }}
-        div.control-group
-          label.control-label Message
-          div.controls
-            div.input-prepend
-              span.add-on
-            {{view Ember.TextField valueBinding="view.smsMessage.message" placeholder="Enter message"}}
-    div.modal-footer
-      <button class="btn" {{action "cancelSendMessage" target="view"}}>Cancel</button>
-      <button class="btn btn-primary" {{action "sendMessage" target="view"}}>Send</button>
+    div.modal-dialog
+      div.modal-content
+        div.modal-header
+          <button class="close" {{action "cancelSendMessage" target="view"}}>&times;</button>
+          h3 Send SMS
+        div.modal-body
+          div.row
+            form(class='form-horizontal col-md-10 col-md-offset-1', role='form')
+                div.form-group
+                  label.control-label To Phone Number
+                  div.controls
+                    div.input-prepend
+                      span.add-on
+                    {{view Ember.TextField valueBinding="view.smsMessage.toPhoneNumber" placeholder="Enter phone number" class="form-control"}}
+                div.form-group
+                  label.control-label Message
+                  div.controls
+                    div.input-prepend
+                      span.add-on
+                    {{view Ember.TextField valueBinding="view.smsMessage.message" placeholder="Enter message" class="form-control"}}
+        div.modal-footer
+          <button class="btn" {{action "cancelSendMessage" target="view"}}>Cancel</button>
+          <button class="btn btn-primary" {{action "sendMessage" target="view"}}>Send</button>

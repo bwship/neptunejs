@@ -1,8 +1,14 @@
 script(type='text/x-handlebars', data-template-name='navigation')
-  nav.navbar
-    div.navbar-inner
-      div.container
-        ul.nav
+  nav(class='navbar navbar-default', role='navigation')
+    div.container-fluid
+      div.navbar-header
+        button(type='button', class='navbar-toggle', data-toggle='collapse', data-target='#site-nav', {{action toggleMobileNav}})
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+      div#site-nav.collapse.navbar-collapse
+        ul.nav.navbar-nav
           li
             <a {{action doHome }} href="#">Home</a>
           li
@@ -20,112 +26,122 @@ script(type='text/x-handlebars', data-template-name='navigation')
 
   div
     div#forgotPassword(class='modal fade', data-backdrop="static", aria-hidden="true")
-      div.modal-header
-        <button class="close" {{action "cancelForgotPassword" target="view"}}>&times;</button>
-        h3 Forgot Password
-      div.modal-body
-        form.form-horizontal
-          div.forgot-password-group.control-group
-            label.control-label
-            div.controls
-              span.help-inline {{view.forgotPassword.error}}
-            label.control-label Email
-            div.controls
-              div.input-prepend
-                span.add-on
-                  i.icon-envelope
-              {{view Ember.TextField valueBinding="view.forgotPassword.email" placeholder="Enter your email address"}}
-          div.forgot-password-group.control-group
-            div.controls
-              div.row
-                div.span1
-                  <a href="#" {{action "showRegister" target="view"}}>Register</a>
-                div.span2
-                  <a href="#" {{action "showSignIn" target="view"}}>Sign In</a>
-      div.modal-footer
-        <button class="btn" {{action "cancelForgotPassword" target="view"}}>Cancel</button>
-        <button class="btn btn-primary" {{action "requestForgotPassword" target="view"}}>Send</button>
+      div.modal-dialog
+        div.modal-content
+          div.modal-header
+            <button class="close" {{action "cancelForgotPassword" target="view"}}>&times;</button>
+            h3 Forgot Password
+          div.modal-body
+            div.row
+              form(class='form-horizontal col-md-10 col-md-offset-1', role='form')
+                div.forgot-password-group.form-group
+                  label.control-label
+                  div.controls
+                    span.help-inline {{view.forgotPassword.error}}
+                  label.control-label Email
+                  div.controls
+                    div.input-prepend
+                      span.add-on
+                        i.icon-envelope
+                    {{view Ember.TextField valueBinding="view.forgotPassword.email" placeholder="Enter your email address" class="form-control"}}
+                div.forgot-password-group.form-group
+                  div.controls
+                    div.row
+                      div.col-md-2
+                        <a href="#" {{action "showRegister" target="view"}}>Register</a>
+                      div.col-md-3
+                        <a href="#" {{action "showSignIn" target="view"}}>Sign In</a>
+          div.modal-footer
+            <button class="btn" {{action "cancelForgotPassword" target="view"}}>Cancel</button>
+            <button class="btn btn-primary" {{action "requestForgotPassword" target="view"}}>Send</button>
 
     div#signIn(class='modal fade', data-backdrop="static", aria-hidden="true")
-      div.modal-header
-        <button class="close" {{action "cancelSignIn" target="view"}}>&times;</button>
-        h3 Sign In
-      div.modal-body
-        <img class="fb_icon" src="images/fb.png" {{action "fbLogin" target="view"}}/>
-        <img class="tw_icon" src="images/tw.png" {{action "twLogin" target="view"}}/>
-        h5.or or
-        form.form-horizontal
-          div.signin-group.control-group
-            label.control-label
-            div.controls
-              span.help-inline {{view.login.error}}
-            label.control-label Email
-            div.controls
-              div.input-prepend
-                span.add-on
-                  i.icon-envelope
-              {{view view.signInTextField valueBinding="view.login.username" placeholder="Enter your email address"}}
-          div.signin-group.control-group
-            label.control-label Password
-            div.controls
-              div.input-prepend
-                span.add-on
-                  i.icon-lock
-              {{view view.signInTextField valueBinding="view.login.password" type="password" placeholder="Enter your password"}}
-          div.control-group
-            div.controls
-              div.row
-                div.span1
-                  <a href="#" {{action "showRegister" target="view"}}>Register</a>
-                div.span2
-                  <a href="#" {{action "showForgotPassword" target="view"}}>Forgot password?</a>
-      div.modal-footer
-        <button class="btn" {{action "cancelSignIn" target="view"}}>Cancel</button>
-        <button class="btn btn-primary" {{action "signIn" target="view"}}>Sign In</button>
+      div.modal-dialog
+        div.modal-content
+          div.modal-header
+            <button class="close" {{action "cancelSignIn" target="view"}}>&times;</button>
+            h3 Sign In
+          div.modal-body
+            div.center-block.row
+              <img class="fb_icon col-md-5 col-md-offset-1" src="images/fb.png" {{action "fbLogin" target="view"}}/>
+              <img class="tw_icon col-md-5" src="images/tw.png" {{action "twLogin" target="view"}}/>
+            h5.or.text-center.row or
+            div.row
+              form(class='form-horizontal col-md-10 col-md-offset-1', role='form')
+                div.signin-group.form-group
+                  label.control-label
+                  div.controls
+                    span.help-inline {{view.login.error}}
+                  label.control-label Email
+                  div.controls
+                    div.input-prepend
+                      span.add-on
+                        i.icon-envelope
+                    {{view view.signInTextField valueBinding="view.login.username" placeholder="Enter your email address" class="form-control"}}
+                div.signin-group.form-group
+                  label.control-label Password
+                  div.controls
+                    div.input-prepend
+                      span.add-on
+                        i.icon-lock
+                    {{view view.signInTextField valueBinding="view.login.password" type="password" placeholder="Enter your password" class="form-control"}}
+                div.form-group
+                  div.controls
+                    div.col-md-2
+                      <a href="#" {{action "showRegister" target="view"}}>Register</a>
+                    div.col-md-4
+                      <a href="#" {{action "showForgotPassword" target="view"}}>Forgot password?</a>
+          div.modal-footer
+            <button class="btn" {{action "cancelSignIn" target="view"}}>Cancel</button>
+            <button class="btn btn-primary" {{action "signIn" target="view"}}>Sign In</button>
 
     div#register(class='modal fade', data-backdrop="static", aria-hidden="true")
-      div.modal-header
-        <button class="close" {{action "cancelRegister" target="view"}}>&times;</button>
-        h3 Register
-      div.modal-body
-        <img class="fb_icon" src="images/fb.png" {{action "fbLogin" target="view"}}/>
-        <img class="tw_icon" src="images/tw.png" {{action "twLogin" target="view"}}/>
-        h5.or or
-        form.form-horizontal
-          div.register-group.control-group
-            label.control-label
-            div.controls
-              span.help-inline {{view.register.error}}
-            label.control-label First
-            div.controls
-              div.input-prepend
-                span.add-on
-              {{view view.registerTextField  valueBinding="view.register.firstName" placeholder="Enter your first name" }}
-          div.register-group.control-group
-            label.control-label Last
-            div.controls
-              div.input-prepend
-                span.add-on
-              {{view view.registerTextField valueBinding="view.register.lastName" placeholder="Enter your last name"}}
-          div.register-group.control-group
-            label.control-label Email
-            div.controls
-              div.input-prepend
-                span.add-on
-                  i.icon-envelope
-              {{view view.registerTextField type="email" valueBinding="view.register.email" placeholder="Enter your email address"}}
-          div.register-group.control-group
-            label.control-label Password
-            div.controls
-              div.input-prepend
-                span.add-on
-                  i.icon-lock
-              {{view view.registerTextField type="password" valueBinding="view.register.password" placeholder="Enter your password"}}
-          div.control-group
-            div.controls
-              div.row
-                div.span3
-                  <a href="#" {{action "showSignIn" target="view"}}>Sign In</a>
-      div.modal-footer
-        <button class="btn" {{action "cancelRegister" target="view"}}>Cancel</button>
-        <button class="btn btn-primary" {{action "registerUser" target="view"}}>Register</button>
+      div.modal-dialog
+        div.modal-content
+          div.modal-header
+            <button class="close" {{action "cancelRegister" target="view"}}>&times;</button>
+            h3 Register
+          div.modal-body
+            div.block-center.row
+              <img class="fb_icon col-md-5 col-md-offset-1" src="images/fb.png" {{action "fbLogin" target="view"}}/>
+              <img class="tw_icon col-md-5" src="images/tw.png" {{action "twLogin" target="view"}}/>
+            h5.or.text-center.row or
+            div.row
+              form(class='form-horizontal col-md-10 col-md-offset-1', role='form')
+                div.register-group.form-group
+                  label.control-label
+                  div.controls
+                    span.help-inline {{view.register.error}}
+                  label.control-label First
+                  div.controls
+                    div.input-prepend
+                      span.add-on
+                    {{view view.registerTextField  valueBinding="view.register.firstName" placeholder="Enter your first name" class="form-control"}}
+                div.register-group.form-group
+                  label.control-label Last
+                  div.controls
+                    div.input-prepend
+                      span.add-on
+                    {{view view.registerTextField valueBinding="view.register.lastName" placeholder="Enter your last name" class="form-control"}}
+                div.register-group.form-group
+                  label.control-label Email
+                  div.controls
+                    div.input-prepend
+                      span.add-on
+                        i.icon-envelope
+                    {{view view.registerTextField type="email" valueBinding="view.register.email" placeholder="Enter your email address" class="form-control"}}
+                div.register-group.form-group
+                  label.control-label Password
+                  div.controls
+                    div.input-prepend
+                      span.add-on
+                        i.icon-lock
+                    {{view view.registerTextField type="password" valueBinding="view.register.password" placeholder="Enter your password" class="form-control"}}
+                div.form-group
+                  div.controls
+                    div.row
+                      div.col-md-3
+                        <a href="#" {{action "showSignIn" target="view"}}>Sign In</a>
+          div.modal-footer
+            <button class="btn" {{action "cancelRegister" target="view"}}>Cancel</button>
+            <button class="btn btn-primary" {{action "registerUser" target="view"}}>Register</button>

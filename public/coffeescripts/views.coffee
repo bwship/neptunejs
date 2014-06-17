@@ -36,6 +36,10 @@ Neptune.NavigationView = Ember.View.extend(
   register: null,
 
   actions:
+    # This shouldn't be necessary, but the menu doesn't work without it
+    toggleMobileNav: ->
+      $('#site-nav').toggleClass 'in'
+
     # sign a user in
     showSignIn: ->
       $(".error").removeClass "error"
