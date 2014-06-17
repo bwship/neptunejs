@@ -54,8 +54,7 @@ Open your browser and go to localhost:3002 or whatever you set the port to in th
 
 TODO
 =========
-- update project to use the newest version of ember.  This is currently using a prerelease of ember.
-- add grunt for the build process
+- Twitter login
 
 This is a baseline project meant to provide a solid foundation to build upon the Node/Ember/Parse stack.  It provides the following pieces of functionality. (It also uses coffeescript, twitter bootstrap, twilio, and mailgun, handlebars.js, jquery and jade)
 
