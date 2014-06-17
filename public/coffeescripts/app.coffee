@@ -1,61 +1,52 @@
 window.Neptune = Ember.Application.create({
-
-  ApplicationController: Ember.Controller.extend({
+  ApplicationController: Ember.Controller.extend
     debug: true
-  }),
 
-  ApplicationView: Ember.View.extend(
+  ApplicationView: Ember.View.extend
     templateName: 'application'
-  ),
-
-  Router: Ember.Router.extend(
-    root: Ember.Route.extend({
-      doHome: (router, event) ->
-        router.transitionTo('home')
-
-      doMyProfile: (router, event) ->
-       router.transitionTo('myProfile')
-
-      doEmailMessaging: (router, event) ->
-        router.transitionTo('emailMessaging')
-
-      doSmsMessaging: (router, event) ->
-        router.transitionTo('smsMessaging')
-
-      home: Ember.Route.extend({
-        route: '/',
-        connectOutlets: (router, event) ->
-          router.get('applicationController').connectOutlet('home')
-      }),
-
-      myProfile: Ember.Route.extend({
-        route: '/myProfile',
-        connectOutlets: (router, event) ->
-          if (Neptune.accountController.isLoggedIn)
-            router.get('applicationController').connectOutlet('myProfile')
-          else
-            router.transitionTo('home')
-      }), 
-
-      emailMessaging: Ember.Route.extend({
-        route: '/emailMessaging',
-        connectOutlets: (router, event) ->
-          if (Neptune.accountController.isLoggedIn)
-            router.get('applicationController').connectOutlet('emailMessaging')
-          else
-            router.transitionTo('home')
-      }), 
-
-      smsMessaging: Ember.Route.extend({
-        route: '/smsMessaging',
-        connectOutlets: (router, event) ->
-          if (Neptune.accountController.isLoggedIn)
-            router.get('applicationController').connectOutlet('smsMessaging')
-          else
-            router.transitionTo('home')
-      })
-    }) 
-  )
 })
 
-window.Neptune.initialize()
+Neptune.Router.map ->
+  this.route 'home', { path: "/" }
+  this.route 'myProfile', { path: "/myProfile" }
+  this.route 'emailMessaging', { path: "/emailMessaging" }
+  this.route 'smsMessaging', { path: "/smsMessaging" }
+
+Neptune.ApplicationRoute = Ember.Route.extend({
+  actions:
+    doHome: ->
+      this.transitionTo('home')
+
+    doMyProfile: ->
+     this.transitionTo('myProfile')
+
+    doEmailMessaging: ->
+      this.transitionTo('emailMessaging')
+
+    doSmsMessaging: ->
+      this.transitionTo('smsMessaging')
+})
+
+Neptune.MyProfileRoute = Ember.Route.extend({
+  beforeModel: ->
+    if (Neptune.accountController.isLoggedIn)
+      return true
+    else
+      this.transitionTo('home')
+})
+
+Neptune.EmailMessagingRoute = Ember.Route.extend({
+  beforeModel: ->
+    if (Neptune.accountController.isLoggedIn)
+      return true
+    else
+      this.transitionTo('home')
+})
+
+Neptune.SmsMessagingRoute = Ember.Route.extend({
+  beforeModel: ->
+    if (Neptune.accountController.isLoggedIn)
+      return true
+    else
+      this.transitionTo('home')
+})

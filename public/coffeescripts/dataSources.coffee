@@ -6,9 +6,8 @@ Neptune.parseDataSource = Ember.Object.create({
   # init
   #    initialize the global Parse object
   init: ->
-    this._super()
     Parse.initialize this.parseApplicationId, this.parseJavaScriptKey
-    
+
     # include facebook script
     ((d) ->
       js = undefined
@@ -20,15 +19,15 @@ Neptune.parseDataSource = Ember.Object.create({
       js.async = true
       js.src = '//connect.facebook.net/en_US/all.js'
       ref.parentNode.insertBefore js, ref
-    ) document   
-     
+    ) document
+
     window.fbAsyncInit = ->
 
       Parse.FacebookUtils.init
         appId: 'FACEBOOK_APP_ID' # Facebook App ID
         cookie: true # enable cookies to allow Parse to access the session
         xfbml: false # parse XFBML
-    
+
 
   # application id property to connect to parse
   parseApplicationId: 'YOUR_APPLICATION_ID'
@@ -43,20 +42,20 @@ Neptune.parseDataSource = Ember.Object.create({
   #     callback - callback function to return the user and/or error
   #   returns
   #     success - Neptune.User object, null
-  #     failure - null, Neptune.Error object 
+  #     failure - null, Neptune.Error object
   login: (username, password, callback) ->
     Parse.User.logIn username, password,
       success: (data) =>
         callback(this.getCurrentUser, null)
       error: (error) =>
         callback(null, this.getError(error.code, error.message, 'ERROR', 'Neptune.parseDataSource-login'))
-        
+
   # fbLogin - attempt to log a user into the parse system via Facebook
   #   parameters
   #     callback - callback function to return the user and/or error
   #   returns
   #     success - Neptune.User object, null
-  #     failure - null, Neptune.Error object 
+  #     failure - null, Neptune.Error object
   fbLogin: (callback) ->
     Parse.FacebookUtils.logIn null,
       success: (user) ->
@@ -77,7 +76,7 @@ Neptune.parseDataSource = Ember.Object.create({
     Parse.User.logOut()
 
   # register - register a user into the system
-  #   parameters 
+  #   parameters
   #     user - Neptune.User object of the person attempting to register
   #     callback - callback function to return the user and/or error
   #   returns
@@ -129,7 +128,7 @@ Neptune.parseDataSource = Ember.Object.create({
 
       parseUser.set 'firstName', user.firstName
       parseUser.set 'lastName', user.lastName
-   
+
       parseUser.save null,
         success: (data) =>
           callback(this.getCurrentUser(), null)
@@ -147,13 +146,13 @@ Neptune.parseDataSource = Ember.Object.create({
         return Neptune.User.create(
           objectId: Parse.User.current().id
         )
-      
+
       else###
       return Neptune.User.create(
         objectId: Parse.User.current().id
         userName: Parse.User.current().attributes.username
         firstName: Parse.User.current().attributes.firstName
-        lastName: Parse.User.current().attributes.lastName 
+        lastName: Parse.User.current().attributes.lastName
       )
     else
       #FB.getLoginStatus (status) ->
@@ -246,7 +245,7 @@ Neptune.parseDataSource = Ember.Object.create({
   #     callback - callback function to return the data and/or error
   #   returns
   #     success - the Neptune.EmailMessage object updated with the objectId returned from parse, null
-  #     failure - null, Neptune.Error object 
+  #     failure - null, Neptune.Error object
   sendEmailMessage: (message, callback) ->
     EmailMessage = Parse.Object.extend('EmailMessage')
     parseMessage = new EmailMessage
@@ -269,7 +268,7 @@ Neptune.parseDataSource = Ember.Object.create({
   #     callback - callback function to return the data and/or error
   #   returns
   #     success - the Neptune.SmsMessage object updated with the objectId returned from parse, null
-  #     failure - null, Neptune.Error object 
+  #     failure - null, Neptune.Error object
   sendSmsMessage: (message, callback) ->
     SmsMessage = Parse.Object.extend('SmsMessage')
     parseMessage = new SmsMessage

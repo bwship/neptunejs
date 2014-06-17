@@ -1,9 +1,8 @@
 Neptune.emailMessagingController = Ember.ArrayController.create(
-  
-  # load all email messages sent be the user 
+
+  # load all email messages sent be the user
   init: ->
     this.loadEmailMessages()
-    this._super()
 
   # array of Neptune.EmailMessage objects
   content: []

@@ -1,21 +1,22 @@
-doctype 5
+doctype html
 html
   head
 
     //**************************************************************************
     //               _____   _____      _______                       _____
-    //    |\     |  |       |     |        |     |      |  |\     |  |     
+    //    |\     |  |       |     |        |     |      |  |\     |  |
     //    | \    |  |       |     |        |     |      |  | \    |  |
     //    |  \   |  |____   |_____|        |     |      |  |  \   |  |____
     //    |   \  |  |       |        ---   |     |      |  |   \  |  |
     //    |    \ |  |       |              |     |      |  |    \ |  |
     //    |     \|  |_____  |              |      \____/   |     \|  |_____
-    // 
+    //
     //     NODE  -  EMBER - PARSE  in perfect TUNE
     //**************************************************************************
-    
+
     title= title
-    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/neptune.css')
     link(rel='stylesheet', href='/stylesheets/neptune-extras.css')
   body
@@ -29,11 +30,11 @@ html
     include templates/myProfile
 
     // library scripts
-    script(src='/javascripts/libs/jquery-1.7.2.min.js')
-    script(src='/javascripts/libs/bootstrap.js')
-    script(src='/javascripts/libs/handlebars-1.0.0.beta.6.js')
-    script(src='/javascripts/libs/ember-1.0.0-pre.2.js')
-    script(src='/javascripts/libs/parse-1.2.8.min.js')
+    script(src='/bower_components/jquery/dist/jquery.min.js')
+    script(src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
+    script(src='/bower_components/handlebars/handlebars.min.js')
+    script(src='/bower_components/ember/ember.min.js')
+    script(src='/bower_components/parse-js-sdk/lib/parse.min.js')
 
     // ember application
     script(src='/javascripts/app.js')
@@ -50,5 +51,4 @@ html
     // ember controllers
     script(src='/javascripts/accountController.js')
     script(src='/javascripts/emailMessagingController.js')
-    script(src='/javascripts/smsMessagingController.js')  
-
+    script(src='/javascripts/smsMessagingController.js')

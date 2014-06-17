@@ -42,7 +42,6 @@ Neptune.EmailMessage = Ember.Object.extend(
   subject: null
   body: null
   init: ->
-    this._super()
     fromUser = Neptune.User.create()
 )
 
@@ -52,7 +51,6 @@ Neptune.SmsMessage = Ember.Object.extend(
   toPhoneNumber: null
   message: null
   init: ->
-    this._super()
     fromUser = Neptune.User.create()
 )
 

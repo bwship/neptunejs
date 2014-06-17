@@ -11,4 +11,11 @@ pids
 logs
 results
 
+node_modules
 npm-debug.log
+
+# Ignore compiled js and css files
+*.js
+public/javascripts/*.js
+public/stylesheets/neptune.css
+public/bower_components/

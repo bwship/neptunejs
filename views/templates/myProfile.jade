@@ -1,7 +1,7 @@
 script(type='text/x-handlebars', data-template-name='my-profile')
   div.container
     div.row
-      div.span6.offset2
+      div.col-md-8.col-md-offset-2
         h3 My Profile
 
         table.table.table-bordered
@@ -16,26 +16,29 @@ script(type='text/x-handlebars', data-template-name='my-profile')
               td {{view.user.userName}}
               td {{view.user.firstName}}
               td {{view.user.lastName}}
-              td <a {{action showEdit target="parentView"}} href="#">Edit</a>
-    
+              td <a {{action showEdit target="view"}} href="#">Edit</a>
+
   div#editUser(class='modal fade', data-backdrop="static", aria-hidden="true")
-    div.modal-header        
-      <button class="close" {{action "cancelEdit" target="parentView"}}>&times;</button>
-      h3 Edit My Profile
-    div.modal-body
-      form.form-horizontal
-        div.register-group.control-group
-          label.control-label First
-          div.controls
-            div.input-prepend
-              span.add-on
-            {{view view.updateTextField  valueBinding="view.editUser.firstName" placeholder="Enter your first name" }}
-        div.register-group.control-group
-          label.control-label Last
-          div.controls
-            div.input-prepend
-              span.add-on
-            {{view view.updateTextField valueBinding="view.editUser.lastName" placeholder="Enter your last name"}}
-    div.modal-footer
-      <button class="btn" {{action "cancelEdit" target="parentView"}}>Cancel</button>
-      <button class="btn btn-primary" {{action "updateUser" target="parentView"}}>Save</button>
+    div.modal-dialog
+      div.modal-content
+        div.modal-header
+          <button class="close" {{action "cancelEdit" target="view"}}>&times;</button>
+          h3 Edit My Profile
+        div.modal-body
+          div.row
+            form(class='form-horizontal col-md-10 col-md-offset-1', role='form')
+              div.register-group.form-group
+                label.control-label First
+                div.controls
+                  div.input-prepend
+                    span.add-on
+                  {{view view.updateTextField valueBinding="view.editUser.firstName" placeholder="Enter your first name" class="form-control"}}
+              div.register-group.form-group
+                label.control-label Last
+                div.controls
+                  div.input-prepend
+                    span.add-on
+                  {{view view.updateTextField valueBinding="view.editUser.lastName" placeholder="Enter your last name" class="form-control"}}
+        div.modal-footer
+          <button class="btn" {{action "cancelEdit" target="view"}}>Cancel</button>
+          <button class="btn btn-primary" {{action "updateUser" target="view"}}>Save</button>
